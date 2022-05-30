@@ -110,7 +110,7 @@
                             provenance de la base de donnée</p>
                     </div>                                            
                     <footer>
-                        <small>♥ 132</small>
+                        <small>🧋 132</small>
                         <a href="">#lorem</a>,
                         <a href="">#piscitur</a>,
                     </footer>

@@ -1,41 +1,26 @@
-<!doctype html>
-<html lang="fr">
+ <!doctype html> 
+ <html lang="fr">
     <head>
-        <meta charset="utf-8">
         <title>ReSoC - Administration</title> 
-        <meta name="author" content="Julien Falconnet">
-        <link rel="stylesheet" href="style.css"/>
     </head>
     <body>
-        <header>
-            <img src="resoc.jpg" alt="Logo de notre réseau social"/>
-            <nav id="menu">
-                <a href="news.php">Actualités</a>
-                <a href="wall.php?user_id=5">Mur</a>
-                <a href="feed.php?user_id=5">Flux</a>
-                <a href="tags.php?tag_id=1">Mots-clés</a>
-            </nav>
-            <nav id="user">
-                <a href="#">Profil</a>
-                <ul>
-                    <li><a href="settings.php?user_id=5">Paramètres</a></li>
-                    <li><a href="followers.php?user_id=5">Mes suiveurs</a></li>
-                    <li><a href="subscriptions.php?user_id=5">Mes abonnements</a></li>
-                </ul>
-
-            </nav>
-        </header>
-
+        <?php 
+        include 'header.php';
+        ?>
+        
         <?php
         /**
          * Etape 1: Ouvrir une connexion avec la base de donnée.
          */
-        // on va en avoir besoin pour la suite
+        // on va en avoir besoin pour la suite 
         $mysqli = new mysqli("localhost", "root", "root", "socialnetwork");
         //verification
-        if ($mysqli->connect_errno)
+        if ($mysqli->connect_errno)//connect_errno description de l'erreur de la dernière connexion 
         {
             echo("Échec de la connexion : " . $mysqli->connect_error);
+            //echo = affichage directement sur la page web 
+            //sorte de console.log
+            // . concatenation 
             exit();
         }
         ?>
@@ -47,6 +32,7 @@
                  * Etape 2 : trouver tous les mots clés
                  */
                 $laQuestionEnSql = "SELECT * FROM `tags` LIMIT 50";
+                // * signifie "tout"
                 $lesInformations = $mysqli->query($laQuestionEnSql);
                 // Vérification
                 if ( ! $lesInformations)
@@ -61,8 +47,9 @@
                  */
                 while ($tag = $lesInformations->fetch_assoc())
                 {
-                    echo "<pre>" . print_r($tag, 1) . "</pre>";
-                    ?>
+                    echo "<pre>" . print_r($tag, 1) . "</pre>";//print_r permet l'affichage de l'ensemble
+                    ?> 
+
                     <article>
                         <h3>#chaussette</h3>
                         <p>id:321</p>

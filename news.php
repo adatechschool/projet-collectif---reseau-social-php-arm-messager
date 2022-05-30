@@ -49,7 +49,7 @@
                             provenance de la base de donnée (voir ci-dessous)</p>
                     </div>                                            
                     <footer>
-                        <small>♥1012 </small>
+                        <small>🧋1012 </small>
                         <a href="">#lorem</a>,
                         <a href="">#piscitur</a>,
                     </footer>
