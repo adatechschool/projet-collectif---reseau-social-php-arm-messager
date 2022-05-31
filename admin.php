@@ -6,24 +6,9 @@
     <body>
         <?php 
         include 'header.php';
+        include 'database_connexion.php';
         ?>
         
-        <?php
-        /**
-         * Etape 1: Ouvrir une connexion avec la base de donnée.
-         */
-        // on va en avoir besoin pour la suite 
-        $mysqli = new mysqli("localhost", "root", "root", "socialnetwork");
-        //verification
-        if ($mysqli->connect_errno)//connect_errno description de l'erreur de la dernière connexion 
-        {
-            echo("Échec de la connexion : " . $mysqli->connect_error);
-            //echo = affichage directement sur la page web 
-            //sorte de console.log
-            // . concatenation 
-            exit();
-        }
-        ?>
         <div id="wrapper" class='admin'>
             <aside>
                 <h2>Mots-clés</h2>
