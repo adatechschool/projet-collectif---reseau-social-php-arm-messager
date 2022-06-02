@@ -10,7 +10,7 @@
         ?>
         <div id="wrapper">
             <aside>
-                <img src="user.jpg" alt="Portrait de l'utilisatrice"/>
+                <img src="avart.png" alt="Portrait de l'utilisatrice"/>
                 <section>
                     <h3>Présentation</h3>
                     <p>Sur cette page vous trouverez la liste des personnes dont
@@ -30,8 +30,8 @@
                 $laQuestionEnSql = "
                     SELECT users.* 
                     FROM followers 
-                    LEFT JOIN users ON users.id=followers.followed_user_id 
-                    WHERE followers.following_user_id='$userId'
+                    LEFT JOIN users ON users.id=followers.follower_id 
+                    WHERE followers.follower_id='$userId'
                     GROUP BY users.id
                     ";
                 $lesInformations = $mysqli->query($laQuestionEnSql);
@@ -39,7 +39,7 @@
                 //@todo: faire la boucle while de parcours des abonnés et mettre les bonnes valeurs ci dessous 
                 ?>
                 <article>
-                    <img src="user.jpg" alt="blason"/>
+                    <img src="avart.png" alt="blason"/>
                     <h3>Alexandra</h3>
                     <p>id:654</p>                    
                 </article>

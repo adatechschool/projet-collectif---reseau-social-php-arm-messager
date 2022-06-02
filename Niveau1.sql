@@ -301,8 +301,8 @@ ALTER TABLE `users`
 -- Contraintes pour la table `followers`
 --
 ALTER TABLE `followers`
-  ADD CONSTRAINT `fk_users_has_users_users1` FOREIGN KEY (`followed_user_id`) REFERENCES `users` (`id`),
-  ADD CONSTRAINT `fk_users_has_users_users2` FOREIGN KEY (`following_user_id`) REFERENCES `users` (`id`);
+  ADD CONSTRAINT `fk_users_has_users_users1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `fk_users_has_users_users2` FOREIGN KEY (`follower_id`) REFERENCES `users` (`id`);
 
 --
 -- Contraintes pour la table `likes`

@@ -32,11 +32,11 @@
                 //@todo: afficher le résultat de la ligne ci dessous, remplacer XXX par l'alias et effacer la ligne ci-dessous
                 echo "<pre>" . print_r($user, 1) . "</pre>";
                 ?>
-                <img src="user.jpg" alt="Portrait de l'utilisatrice"/>
+                <img src="avart.png" alt="Portrait de l'utilisatrice"/>
                 <section>
                     <h3>Présentation</h3>
                     <p>Sur cette page vous trouverez tous les message des utilisatrices
-                        auxquel est abonnée l'utilisatrice XXX
+                        auxquel est abonnée l'utilisatrice <a href="wall.php?user_id=<?php echo $userId ?>"><?php echo $user['alias']?></a>
                         (n° <?php echo $userId ?>)
                     </p>
 
@@ -54,12 +54,12 @@
                     count(likes.id) as like_number,  
                     GROUP_CONCAT(DISTINCT tags.label) AS taglist 
                     FROM followers 
-                    JOIN users ON users.id=followers.followed_user_id
+                    JOIN users ON users.id=followers.follower_id
                     JOIN posts ON posts.user_id=users.id
                     LEFT JOIN posts_tags ON posts.id = posts_tags.post_id  
                     LEFT JOIN tags       ON posts_tags.tag_id  = tags.id 
                     LEFT JOIN likes      ON likes.post_id  = posts.id 
-                    WHERE followers.following_user_id='$userId' 
+                    WHERE followers.follower_id='$userId' 
                     GROUP BY posts.id
                     ORDER BY posts.created DESC  
                     ";
@@ -68,7 +68,8 @@
                 {
                     echo("Échec de la requete : " . $mysqli->error);
                 }
-
+                while ($post = $lesInformations->fetch_assoc())
+                {
                 /**
                  * Etape 4: @todo Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
                  * A vous de retrouver comment faire la boucle while de parcours...
@@ -76,26 +77,29 @@
                 ?>                
                 <article>
                     <h3>
-                        <time datetime='2020-02-01 11:12:13' >31 février 2010 à 11h12</time>
+                        <time datetime='<?php echo $post['created'] ?>'></time>
+                        <?php
+                            setlocale(LC_TIME, "fr_FR","French");
+                            echo strftime("%d %B %G à %Hh%M", strtotime($post['created']));?>
                     </h3>
-                    <address>par AreTirer</address>
+                    <address><a href="wall.php?user_id=<?php echo $post['author_id'] ?>"><?php echo $post['author_name'] ?></address>
                     <div>
-                        <p>Ceci est un paragraphe</p>
-                        <p>Ceci est un autre paragraphe</p>
-                        <p>... de toutes manières il faut supprimer cet 
-                            article et le remplacer par des informations en 
-                            provenance de la base de donnée</p>
-                    </div>                                            
+                        <p><?php echo $post['content']?></p>
+                         
                     <footer>
-                        <small>🧋 132</small>
-                        <a href="">#</a>,
-                        <a href="">#piscitur</a>,
+                        <small>🧋<?php echo $post['like_number'] ?></small>
+                        <?php
+                            $array = explode(',', $post['taglist']);
+                            foreach ($array as $valeur) {
+                                echo "<a href=''>#$valeur, </a>";}
+                            ?>
                     </footer>
                 </article>
                 <?php
+                }
                 // et de pas oublier de fermer ici vote while
                 ?>
-
+                
 
             </main>
         </div>
