@@ -84,10 +84,7 @@
                         <address>par <?php echo $post['author_name'] ?></address>
                         <div>
                             <p><?php echo $post['content'] ?></p>
-                            <p>Ceci est un autre paragraphe</p>
-                            <p>... de toutes manières il faut supprimer cet 
-                                article et le remplacer par des informations en 
-                                provenance de la base de donnée</p>
+                            
                         </div>                                            
                         <footer>
                             <small>🧋 <?php echo $post['like_number'] ?> </small>

@@ -29,20 +29,23 @@
                 $laQuestionEnSql = "
                     SELECT users.*
                     FROM followers
-
-                    LEFT JOIN users ON users.id=followers.following_user_id
-                    WHERE followers.followed_user_id='$userId'
+                    LEFT JOIN users ON users.id=followers.follower_id
+                    WHERE followers.user_id='$userId'
                     GROUP BY users.id
                     ";
                     $lesInformations = $mysqli->query($laQuestionEnSql);
                     // Etape 4: à vous de jouer
                     //@todo: faire la boucle while de parcours des abonnés et mettre les bonnes valeurs ci dessous 
-                    ?>
-                    <article>
-                        <img src="user.jpg" alt="blason"/>
-                        <h3>Béatrice</h3>
-                        <p>id:321</p>
-                    </article>
+                    while ($followers = $lesInformations->fetch_assoc())
+                {
+                   //echo "<pre>" . print_r($followers, 1) . "</pre>";
+                ?>
+                <article>
+                    <img src="user.jpg" alt="blason"/>
+                    <h3><a href="wall.php?user_id=<?php echo $followers['id'] ?>"> <?php echo $followers['alias'] ?> </a></h3>
+                    <p>id:<?php echo $followers['id'] ?></p>
+                </article>
+                <?php } ?>
             </main>
         </div>
     </body>
