@@ -2,12 +2,12 @@
 <html lang="fr">
     <head>
         <title>ReSoC - Flux</title>         
-       
     </head>
     <body>
-            <?php 
-                include 'header.php';
-            ?>
+        <?php
+        include 'header.php';
+        include 'database_connexion.php';
+        ?>
         <div id="wrapper">
             <?php
             /**
@@ -20,13 +20,7 @@
              */
             $userId = intval($_GET['user_id']);
             ?>
-            <?php
-            /**
-             * Etape 2: se connecter à la base de donnée
-             */
-            $mysqli = new mysqli("localhost", "root", "root", "socialnetwork");
-            ?>
-
+            
             <aside>
                 <?php
                 /**
