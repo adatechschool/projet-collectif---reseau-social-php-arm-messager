@@ -88,7 +88,7 @@
                     </div>                                            
                     <footer>
                         <small>🧋 132</small>
-                        <a href="">#lorem</a>,
+                        <a href="">#</a>,
                         <a href="">#piscitur</a>,
                     </footer>
                 </article>
