@@ -1,3 +1,11 @@
+
+<?php
+session_start()
+    if (!$_SESSION['connected_id']) {
+        header("Location: login.php");
+        die();
+    }
+?>
 <!doctype html>
 <html lang="fr">
 <head>
@@ -7,6 +15,7 @@
     <?php
     include 'header.php';
     include 'database_connexion.php';
+    
     ?>
     <div id="wrapper">
         <aside>

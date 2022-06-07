@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!doctype html>
 <html lang="fr">
     <head>
@@ -8,6 +11,10 @@
        <?php 
          include 'header.php';
          include 'database_connexion.php';
+         if (!$_SESSION['connected_id']) {
+             header("Location: login.php");
+             die();
+         }
         ?>
         
         <div id="wrapper" class='profile'>

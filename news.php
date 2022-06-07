@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!doctype html>
 <html lang="fr">
     <head>
@@ -40,7 +43,7 @@
                 // cette requete vous est donnée, elle est complexe mais correcte, 
                 // si vous ne la comprenez pas c'est normal, passez, on y reviendra
                 $laQuestionEnSql = "
-                    SELECT posts.content,
+                    SELECT posts.content,users.id as user_id,
                     posts.created,
                     users.alias as author_name,  
                     count(likes.id) as like_number,  
@@ -82,7 +85,7 @@
                         <h3>
                             <time><?php echo $post['created']?></time>
                         </h3>
-                        <address><?php echo $post['author_name'] ?></address>
+                        <address><a href="wall.php?user_id=<?php echo $post['user_id'] ?>"> par <?php echo $post['author_name'] ?> </a></address>
                         <div>
                             <p><?php echo $post['content'] ?></p>
                         </div>
