@@ -30,7 +30,7 @@
             $lesInformations = $mysqli->query($laQuestionEnSql);
             $user = $lesInformations->fetch_assoc();
             //@todo: afficher le résultat de la ligne ci dessous, remplacer XXX par l'alias et effacer la ligne ci-dessous
-            echo "<pre>" . print_r($user, 1) . "</pre>";
+            // echo "<pre>" . print_r($user, 1) . "</pre>";
             ?>
             <img src="avart.png" alt="Portrait de l'utilisatrice" />
             <section>
@@ -65,7 +65,7 @@
              * Etape 4: @todo Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
              */
             while ($post = $lesInformations->fetch_assoc()) {
-                echo "<pre>" . print_r($post, 1) . "</pre>";
+                //echo "<pre>" . print_r($post, 1) . "</pre>";
             ?>
                 <article>
                     <h3>
@@ -80,7 +80,7 @@
                     <footer>
                         <small>🧋<?php echo $post['like_number'] ?></small>
                         <?php foreach (explode('.', $post['taglist']) as $tag) { ?>
-                            <a href="<?php echo '#' . $tag ?>"><?php echo '#' . $tag . ' ' ?></a>
+                            <a href="<?php echo '#' .$tag ?>"><?php echo '#'. $tag . ' ' ?></a>
                         <?php } ?>
                     </footer>
                 </article>

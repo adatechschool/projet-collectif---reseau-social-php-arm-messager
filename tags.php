@@ -48,7 +48,7 @@
                  * Etape 3: récupérer tous les messages avec un mot clé donné
                  */
                 $laQuestionEnSql = "
-                    SELECT posts.content,
+                    SELECT users.id as user_id, posts.content,
                     posts.created,
                     users.alias as author_name,  
                     count(likes.id) as like_number,  
@@ -81,7 +81,7 @@
                         <h3>
                             <time datetime='2020-02-01 11:12:13' ><?php echo $post['created'] ?></time>
                         </h3>
-                        <address>par <?php echo $post['author_name'] ?></address>
+                        <address><a href="wall.php?user_id=<?php echo $post['user_id']?>">par <?php echo $post['author_name'] ?></address>
                         <div>
                             <p><?php echo $post['content'] ?></p>
                             

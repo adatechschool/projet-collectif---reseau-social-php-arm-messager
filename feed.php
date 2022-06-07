@@ -48,7 +48,7 @@
                  * Etape 3: récupérer tous les messages des abonnements
                  */
                 $laQuestionEnSql = "
-                    SELECT posts.content,
+                    SELECT users.id as user_id, posts.content,
                     posts.created,
                     users.alias as author_name,  
                     count(likes.id) as like_number,  
@@ -82,7 +82,7 @@
                             setlocale(LC_TIME, "fr_FR","French");
                             echo strftime("%d %B %G à %Hh%M", strtotime($post['created']));?>
                     </h3>
-                    <address><a href="wall.php?user_id=<?php echo $post['author_id'] ?>"><?php echo $post['author_name'] ?></address>
+                    <address><a href="wall.php?user_id=<?php echo $post['user_id']?>"><?php echo $post['author_name'] ?></address>
                     <div>
                         <p><?php echo $post['content']?></p>
                          
