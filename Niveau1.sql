@@ -33,15 +33,15 @@ USE `socialnetwork`;
 DROP TABLE IF EXISTS `followers`;
 CREATE TABLE `followers` (
   `id` int(10) UNSIGNED NOT NULL,
-  `followed_user_id` int(10) UNSIGNED NOT NULL,
-  `following_user_id` int(10) UNSIGNED NOT NULL
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `follower_id` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `followers`
 --
 
-INSERT INTO `followers` (`id`, `followed_user_id`, `following_user_id`) VALUES
+INSERT INTO `followers` (`id`, `user_id`, `follower_id`) VALUES
 (1, 5, 3),
 (2, 5, 6),
 (3, 5, 7),
@@ -211,8 +211,8 @@ INSERT INTO `users` (`id`, `email`, `password`, `alias`) VALUES
 --
 ALTER TABLE `followers`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_users_has_users_users2_idx` (`following_user_id`),
-  ADD KEY `fk_users_has_users_users1_idx` (`followed_user_id`);
+  ADD KEY `fk_users_has_users_users2_idx` (`follower_id`),
+  ADD KEY `fk_users_has_users_users1_idx` (`user_id`);
 
 --
 -- Index pour la table `likes`

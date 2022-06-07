@@ -95,18 +95,18 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `socialnetwork`.`followers` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `followed_user_id` INT UNSIGNED NOT NULL,
-  `following_user_id` INT UNSIGNED NOT NULL,
+  `user_id` INT UNSIGNED NOT NULL,
+  `follower_id` INT UNSIGNED NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_users_has_users_users2_idx` (`following_user_id` ASC),
-  INDEX `fk_users_has_users_users1_idx` (`followed_user_id` ASC),
+  INDEX `fk_users_has_users_users2_idx` (`follower_id` ASC),
+  INDEX `fk_users_has_users_users1_idx` (`user_id` ASC),
   CONSTRAINT `fk_users_has_users_users1`
-    FOREIGN KEY (`followed_user_id`)
+    FOREIGN KEY (`user_id`)
     REFERENCES `socialnetwork`.`users` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_users_has_users_users2`
-    FOREIGN KEY (`following_user_id`)
+    FOREIGN KEY (`follower_id`)
     REFERENCES `socialnetwork`.`users` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
