@@ -33,8 +33,8 @@ USE `socialnetwork`;
 DROP TABLE IF EXISTS `followers`;
 CREATE TABLE `followers` (
   `id` int(10) UNSIGNED NOT NULL,
-  `followed_user_id` int(10) UNSIGNED NOT NULL,
-  `following_user_id` int(10) UNSIGNED NOT NULL
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `follower_id` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
