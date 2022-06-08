@@ -18,7 +18,7 @@ session_start();
 
             <aside>
                 <h2>Présentation</h2>
-                <p>Bienvenu sur notre réseau social.</p>
+                <p>Bienvenu.e sur notre Bubble Chat.</p>
             </aside>
             <main>
                 <article>
@@ -65,10 +65,12 @@ session_start();
                             
                         } else
                         {
-                            echo "Votre connexion est un succès : " . $user['alias'] . ".";
+                            header("location:news.php"); 
+                            //echo "Votre connexion est un succès : " . $user['alias'] . ".";
                             // Etape 7 : Se souvenir que l'utilisateur s'est connecté pour la suite
                             // documentation: https://www.php.net/manual/fr/session.examples.basic.php
-                            $_SESSION['connected_id']=$user['id'];
+                            $_SESSION['connected_alias']=$user['alias'];
+
                         }
                     }
                     ?>                     

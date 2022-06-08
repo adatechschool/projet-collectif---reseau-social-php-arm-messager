@@ -1,4 +1,8 @@
-<!doctype html>
+<?php
+session_start();
+?>
+
+    <!doctype html>
 <html lang="fr">
     <head>
         <title>ReSoC - Flux</title>         
@@ -7,6 +11,10 @@
         <?php
         include 'header.php';
         include 'database_connexion.php';
+        if (!$_SESSION['connected_id']) {
+        header("Location: login.php");
+        die();
+        }
         ?>
         <div id="wrapper">
             <?php
@@ -48,7 +56,7 @@
                  * Etape 3: récupérer tous les messages des abonnements
                  */
                 $laQuestionEnSql = "
-                    SELECT users.id as user_id, posts.content,
+                    SELECT posts.content,users.id as user_id,
                     posts.created,
                     users.alias as author_name,  
                     count(likes.id) as like_number,  
@@ -82,7 +90,7 @@
                             setlocale(LC_TIME, "fr_FR","French");
                             echo strftime("%d %B %G à %Hh%M", strtotime($post['created']));?>
                     </h3>
-                    <address><a href="wall.php?user_id=<?php echo $post['user_id']?>"><?php echo $post['author_name'] ?></address>
+                    <address><a href="wall.php?user_id=<?php echo $post['user_id'] ?>"> par <?php echo $post['author_name'] ?> </a></address>
                     <div>
                         <p><?php echo $post['content']?></p>
                          
