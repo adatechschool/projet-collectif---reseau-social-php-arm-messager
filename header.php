@@ -2,7 +2,6 @@
   if (session_status()== 2) {
   $userId = intval($_SESSION['connected_id']);
 }
-
 ?>
     <head>
         <meta charset="utf-8">
@@ -22,13 +21,13 @@
             <nav id="user">
                 <a href="#">Profil</a>
                 <ul>
+                    <li><a href="login.php">Login</a></li>
                     <li><a href="settings.php?user_id=<?php echo $userId;?>">Paramètres</a></li>
                     <li><a href="followers.php?user_id=<?php echo $userId;?>">Mes suiveurs</a></li>
                     <li><a href="subscriptions.php?user_id=<?php echo $userId;?>">Mes abonnements</a></li>
+                    <li><a href="destroy.php">Se déconnecter</a></li>
                 </ul>
-
-            </nav>
-        </header>
-                
-    </body>
+        </nav>
+    </header>
+</body>
 </html>

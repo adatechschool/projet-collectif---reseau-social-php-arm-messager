@@ -1,56 +1,64 @@
 <?php
 session_start();
 ?>
+
 <!doctype html>
 <html lang="fr">
-    <head>
-        <title>ReSoC - Les message par mot-clé</title> 
-    </head>
-    <body>
-        <?php 
-        include 'header.php';
-        include 'database_connexion.php';
+
+<head>
+    <title>ReSoC - Les message par mot-clé</title>
+</head>
+
+<body>
+    <?php
+    include 'header.php';
+    include 'database_connexion.php';
+    if (!isset($_SESSION['connected_id'])) {
+        header("Location: login.php");
+        exit();
+        }
+    ?>
+    ?>
+
+    <div id="wrapper">
+        <?php
+        /**
+         * Cette page est similaire à wall.php ou feed.php 
+         * mais elle porte sur les mots-clés (tags)
+         */
+        /**
+         * Etape 1: Le mur concerne un mot-clé en particulier
+         */
+        $tagId = intval($_GET['tag_id']);
         ?>
-        
-        <div id="wrapper">
+
+
+        <aside>
             <?php
             /**
-             * Cette page est similaire à wall.php ou feed.php 
-             * mais elle porte sur les mots-clés (tags)
+             * Etape 3: récupérer le nom du mot-clé
              */
-            /**
-             * Etape 1: Le mur concerne un mot-clé en particulier
-             */
-            $tagId = intval($_GET['tag_id']);
+            $laQuestionEnSql = "SELECT * FROM tags WHERE id= '$tagId' ";
+            $lesInformations = $mysqli->query($laQuestionEnSql);
+            $tag = $lesInformations->fetch_assoc();
+            //@todo: afficher le résultat de la ligne ci dessous, remplacer XXX par le label et effacer la ligne ci-dessous
+            //echo "<pre>" . print_r($tag, 1) . "</pre>";
             ?>
-            
+            <img src="user.jpg" alt="Portrait de l'utilisatrice" />
+            <section>
+                <h3>Présentation</h3>
+                <p><?php echo $tag['label'] ?>
+                    (n° <?php echo $tagId ?>)
+                </p>
 
-            <aside>
-                <?php
-                /**
-                 * Etape 3: récupérer le nom du mot-clé
-                 */
-                $laQuestionEnSql = "SELECT * FROM tags WHERE id= '$tagId' ";
-                $lesInformations = $mysqli->query($laQuestionEnSql);
-                $tag = $lesInformations->fetch_assoc();
-                //@todo: afficher le résultat de la ligne ci dessous, remplacer XXX par le label et effacer la ligne ci-dessous
-                //echo "<pre>" . print_r($tag, 1) . "</pre>";
-                ?>
-                <img src="user.jpg" alt="Portrait de l'utilisatrice"/>
-                <section>
-                    <h3>Présentation</h3>
-                    <p><?php echo $tag['label'] ?>
-                        (n° <?php echo $tagId ?>)
-                    </p>
-
-                </section>
-            </aside>
-            <main>
-                <?php
-                /**
-                 * Etape 3: récupérer tous les messages avec un mot clé donné
-                 */
-                $laQuestionEnSql = "
+            </section>
+        </aside>
+        <main>
+            <?php
+            /**
+             * Etape 3: récupérer tous les messages avec un mot clé donné
+             */
+            $laQuestionEnSql = "
                     SELECT posts.content,users.id as user_id,
                     posts.created,
                     users.alias as author_name,  
@@ -66,42 +74,42 @@ session_start();
                     GROUP BY posts.id
                     ORDER BY posts.created DESC  
                     ";
-                $lesInformations = $mysqli->query($laQuestionEnSql);
-                if ( ! $lesInformations)
-                {
-                    echo("Échec de la requete : " . $mysqli->error);
-                }
+            $lesInformations = $mysqli->query($laQuestionEnSql);
+            if (!$lesInformations) {
+                echo ("Échec de la requete : " . $mysqli->error);
+            }
 
-                /**
-                 * Etape 4: @todo Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
-                 */
-                while ($post = $lesInformations->fetch_assoc())
-                {
+            /**
+             * Etape 4: @todo Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
+             */
+            while ($post = $lesInformations->fetch_assoc()) {
 
-                    //echo "<pre>" . print_r($post, 1) . "</pre>";
-                    ?>                
-                    <article>
-                        <h3>
-                            <time datetime='2020-02-01 11:12:13' ><?php echo $post['created'] ?></time>
-                        </h3>
-                        <address>par <?php echo $post['author_name'] ?></address>
-                        <div>
-                            <p><?php echo $post['content'] ?></p>
-                            
-                        </div>                                            
-                        <footer>
-                            <small>🧋 <?php echo $post['like_number'] ?> </small>
-                            <?php
-                            $array = explode(',', $post['taglist']);
-                            foreach ($array as $valeur) {
-                                echo "<a href=''>#$valeur, </a>";}
-                            ?>
-                        </footer>
-                    </article>
-                <?php } ?>
+                //echo "<pre>" . print_r($post, 1) . "</pre>";
+            ?>
+                <article>
+                    <h3>
+                        <time datetime='2020-02-01 11:12:13'><?php echo $post['created'] ?></time>
+                    </h3>
+                    <address>par <?php echo $post['author_name'] ?></address>
+                    <div>
+                        <p><?php echo $post['content'] ?></p>
+
+                    </div>
+                    <footer>
+                        <small>🧋 <?php echo $post['like_number'] ?> </small>
+                        <?php
+                        $array = explode(',', $post['taglist']);
+                        foreach ($array as $valeur) {
+                            echo "<a href=''>#$valeur, </a>";
+                        }
+                        ?>
+                    </footer>
+                </article>
+            <?php } ?>
 
 
-            </main>
-        </div>
-    </body>
+        </main>
+    </div>
+</body>
+
 </html>
