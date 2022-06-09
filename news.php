@@ -74,7 +74,7 @@ session_start();
                 {
                     //la ligne ci-dessous doit etre supprimée mais regardez ce 
                     //qu'elle affiche avant pour comprendre comment sont organisées les information dans votre 
-                    echo "<pre>" . print_r($post, 1) . "</pre>";
+                    //echo "<pre>" . print_r($post, 1) . "</pre>";
 
                     // @todo : Votre mission c'est de remplacer les AREMPLACER par les bonnes valeurs
                     // ci-dessous par les bonnes valeurs cachées dans la variable $post 
@@ -91,8 +91,9 @@ session_start();
                             <p><?php echo $post['content'] ?></p>
                         </div>
                         <footer>
-                            <small> 🧋 <?php echo $post['like_number'] ?>  </small>
-    
+                            <form action=""  method="post"> 
+                                <small><a href=#> 🧋 </a><?php echo $post['like_number'] ?>  </small>
+                            </form>
                             <?php
                             $array = explode(',', $post['taglist']);
                             foreach ($array as $valeur) {

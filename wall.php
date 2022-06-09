@@ -34,7 +34,7 @@ session_start();
             $lesInformations = $mysqli->query($laQuestionEnSqlDisplayName);
             $user = $lesInformations->fetch_assoc();
             //@todo: afficher le résultat de la ligne ci dessous, remplacer XXX par l'alias et effacer la ligne ci-dessous
-            echo "<pre>" . print_r($user, 1) . "</pre>";
+             echo "<pre>" . print_r($user, 1) . "</pre>";
             ?>
             <img src="avart.png" alt="Portrait de l'utilisatrice" />
             <section>
