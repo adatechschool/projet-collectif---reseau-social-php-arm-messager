@@ -1,9 +1,10 @@
-
 <!doctype html>
 <html lang="fr">
+
 <head>
     <title>ReSoC - Mur</title>
 </head>
+
 <body>
     <?php
     include 'header.php';
@@ -26,8 +27,8 @@
             /**
              * Etape 3: récupérer le nom de l'utilisateur
              */
-            $laQuestionEnSql = "SELECT * FROM users WHERE id= '$userId' ";
-            $lesInformations = $mysqli->query($laQuestionEnSql);
+            $laQuestionEnSqlDisplayName = "SELECT * FROM users WHERE id= '$userId' ";
+            $lesInformations = $mysqli->query($laQuestionEnSqlDisplayName);
             $user = $lesInformations->fetch_assoc();
             //@todo: afficher le résultat de la ligne ci dessous, remplacer XXX par l'alias et effacer la ligne ci-dessous
             echo "<pre>" . print_r($user, 1) . "</pre>";
@@ -45,7 +46,7 @@
             /**
              * Etape 3: récupérer tous les messages de l'utilisatrice
              */
-            $laQuestionEnSql = "
+            $displayingTheContentSQL = "
             SELECT users.id as user_id, posts.content, posts.created, users.alias as author_name, 
             COUNT(likes.id) as like_number, GROUP_CONCAT(DISTINCT tags.label) AS taglist 
             FROM posts
@@ -57,36 +58,71 @@
             GROUP BY posts.id
             ORDER BY posts.created DESC  
             ";
-    $lesInformations = $mysqli->query($laQuestionEnSql);
-    if (!$lesInformations) {
-        echo ("Échec de la requete : " . $mysqli->error);
-    }
-    /**
-     * Etape 4: @todo Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
-     */
-    while ($post = $lesInformations->fetch_assoc()) {
-        echo "<pre>" . print_r($post, 1) . "</pre>";
-    ?>
-        <article>
-            <h3>
-                <time datetime='<?php echo $post['created'] ?>'> <?php echo $post['created'] ?></time>
-            </h3>
-            <address><a href="wall.php?user_id=<?php echo $post['user_id'] ?>"> par <?php echo $post['author_name'] ?> </a></address>
-            <div>
-                <?php foreach (explode(',', $post['content']) as $paragraph) { ?>
-                    </p> <?php echo $paragraph; ?></p>
+
+            $enCoursDeTraitementWriting = isset($_POST['message']);
+            if ($enCoursDeTraitementWriting) {
+                echo "<pre>" . print_r($_POST, 1) . "</pre>";
+                $postContent = $_POST['message'];
+                $postContent = $mysqli->real_escape_string($postContent);
+
+                $writingOnTheWallSQL = "INSERT INTO posts "
+                    . "(id, user_id, content, created, parent_id) "
+                    . "VALUES (NULL, "
+                    . $userId . ", "
+                    . "'" . $postContent . "', "
+                    . "NOW(), "
+                    . "NULL);";
+                $lesInformationsWrite = $mysqli->query($writingOnTheWallSQL);
+
+                if (!$lesInformationsWrite) {
+                    echo ("Échec de la requete : " . $mysqli->error);
+                }
+            }
+            // echo $lInstructionSql;
+            // Etape 5 : execution
+
+            $lesInformationsDisplayWall = $mysqli->query($displayingTheContentSQL);
+
+            if (!$lesInformationsDisplayWall) {
+                echo ("Échec de la requete : " . $mysqli->error);
+            }
+
+            /**
+             * Etape 4: @todo Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
+             */
+            ?>
+            <form name="new_post" action="wall.php?user_id=<?php echo $userId ?>" method="post">
+                <input type='hidden' name='???' value='achanger'>
+                <dl>
+                    <dt><label for='message'>Message</label></dt>
+                    <dd><textarea name='message' placeholder='Entrez votre message'></textarea></dd>
+                </dl>
+                <input type='submit'>
+
+                <?php
+                while ($posted = $lesInformationsDisplayWall->fetch_assoc()) {
+                    echo "<pre>" . print_r($posted, 1) . "</pre>";
+                ?>
+                    <article>
+                        <h3>
+                            <time datetime='<?php echo $posted['created'] ?>'> <?php echo $posted['created'] ?></time>
+                        </h3>
+                        <address><a href="wall.php?user_id=<?php echo $posted['user_id'] ?>"> par <?php echo $posted['author_name'] ?> </a></address>
+                        <div>
+                            <?php foreach (explode(',', $posted['content']) as $paragraph) { ?>
+                                </p> <?php echo $paragraph; ?></p>
+                            <?php } ?>
+                        </div>
+                        <footer>
+                            <small>🧋<?php echo $posted['like_number'] ?></small>
+                            <?php foreach (explode('.', $posted['taglist']) as $tag) { ?>
+                                <a href=" <?php echo '#' . $tag ?>"> <?php echo '#' . $tag . ' ' ?></a>
+                            <?php } ?>
+                        </footer>
+                    </article>
                 <?php } ?>
-            </div>
-            <footer>
-                <small>🧋<?php echo $post['like_number'] ?></small>
-                <?php foreach (explode('.', $post['taglist']) as $tag) { ?>
-                    <a href=" <?php echo '#' . $tag ?>"> <?php echo '#' . $tag . ' ' ?></a>
-                <?php } ?>
-            </footer>
-        </article>
-    <?php } ?>
-</main>
-</div>
+        </main>
+    </div>
 </body>
 
 </html>
