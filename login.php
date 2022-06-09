@@ -1,6 +1,4 @@
-<?php
-session_start();
-?>
+
 <!doctype html>
 <html lang="fr">
     <head>
@@ -62,10 +60,13 @@ session_start();
                         if ( ! $user OR $user["password"] != $passwdAVerifier)
                         {
                             echo "La connexion a échouée. ";
-                            
+                         
                         } else
-                        {
-                            header("location:news.php"); 
+
+                        { 
+                            session_start();
+                            $_SESSION['connected_id'] = $user['id'];
+                            header("location:"".php"); 
                             //echo "Votre connexion est un succès : " . $user['alias'] . ".";
                             // Etape 7 : Se souvenir que l'utilisateur s'est connecté pour la suite
                             // documentation: https://www.php.net/manual/fr/session.examples.basic.php

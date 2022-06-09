@@ -4,6 +4,7 @@ if (session_status() == 2) {
     session_start();
     $userId = intval($_SESSION['connected_id']);
 }
+
 ?>
 
 <head>
