@@ -15,11 +15,8 @@ if (!isset($_SESSION['connected_id'])) {
     <?php
     include 'header.php';
     include 'database_connexion.php';
-    if (!$_SESSION['connected_id']) {
-        header("Location: login.php");
-        die();
-    }
     ?>
+    
     <div id="wrapper">
         <aside>
             <img src="user.jpg" alt="Portrait de l'utilisatrice" />
