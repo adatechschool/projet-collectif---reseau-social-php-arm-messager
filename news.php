@@ -90,8 +90,9 @@ session_start();
                             <p><?php echo $post['content'] ?></p>
                         </div>
                         <footer>
-                            <small> 🧋 <?php echo $post['like_number'] ?>  </small>
-    
+                            <form action=""  method="post"> 
+                                <small><a href=#> 🧋 </a><?php echo $post['like_number'] ?>  </small>
+                            </form>
                             <?php
                             $array = explode(',', $post['taglist']);
                             foreach ($array as $valeur) {

@@ -30,7 +30,7 @@
             $lesInformations = $mysqli->query($laQuestionEnSql);
             $user = $lesInformations->fetch_assoc();
             //@todo: afficher le résultat de la ligne ci dessous, remplacer XXX par l'alias et effacer la ligne ci-dessous
-            // echo "<pre>" . print_r($user, 1) . "</pre>";
+             echo "<pre>" . print_r($user, 1) . "</pre>";
             ?>
             <img src="avart.png" alt="Portrait de l'utilisatrice" />
             <section>
@@ -78,7 +78,7 @@
                 <?php } ?>
             </div>
             <footer>
-                <small>🧋<?php echo $post['like_number'] ?></small>
+                <small><a href=#">🧋</a><?php echo $post['like_number'] ?></small>
                 <?php foreach (explode('.', $post['taglist']) as $tag) { ?>
                     <a href=" <?php echo '#' . $tag ?>"> <?php echo '#' . $tag . ' ' ?></a>
                 <?php } ?>

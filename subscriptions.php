@@ -1,10 +1,6 @@
-
 <?php
 session_start()
-    if (!$_SESSION['connected_id']) {
-        header("Location: login.php");
-        die();
-    }
+    
 ?>
 <!doctype html>
 <html lang="fr">
@@ -15,7 +11,10 @@ session_start()
     <?php
     include 'header.php';
     include 'database_connexion.php';
-    
+    if (!$_SESSION['connected_id']) {
+        header("Location: login.php");
+        die();
+    }
     ?>
     <div id="wrapper">
         <aside>
