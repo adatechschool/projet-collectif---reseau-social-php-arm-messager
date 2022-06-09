@@ -65,7 +65,7 @@
                         { 
                             session_start();
                             $_SESSION['connected_id'] = $user['id'];
-                            header("location:"".php"); 
+                            header("location:news.php"); 
                             //echo "Votre connexion est un succès : " . $user['alias'] . ".";
                             // Etape 7 : Se souvenir que l'utilisateur s'est connecté pour la suite
                             // documentation: https://www.php.net/manual/fr/session.examples.basic.php

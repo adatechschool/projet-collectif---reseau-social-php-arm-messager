@@ -1,7 +1,6 @@
 <?php
-echo session_status();
 if (session_status()== 2) {
-  session_start();
+ // session_start();
   $userId = intval($_SESSION['connected_id']);
 }
 
@@ -19,6 +18,7 @@ if (session_status()== 2) {
                 <a href="wall.php?user_id=<?php echo $userId;?>">Mur</a>
                 <a href="feed.php?user_id=<?php echo $userId;?>">Flux</a>
                 <a href="tags.php?tag_id=<?php echo $userId;?>">Mots-clés</a>
+                <a href="usurpedpost.php?tag_id=<?php echo $userId;?>">Catfish</a>
             </nav>
             <nav id="user">
                 <a href="#">Profil</a>
