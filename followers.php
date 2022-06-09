@@ -10,10 +10,10 @@ session_start();
         <?php 
          include 'header.php';
          include 'database_connexion.php';
-         if (!$_SESSION['connected_id']) {
-             header("Location: login.php");
-             die();
-         }
+         if (!isset($_SESSION['connected_id'])) {
+            header("Location: login.php");
+            exit();
+            }
         ?>
         
         <div id="wrapper">          

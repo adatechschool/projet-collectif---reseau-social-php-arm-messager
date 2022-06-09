@@ -1,9 +1,10 @@
 <?php
 echo session_status();
-if (session_status() == 2) {
+if (session_status()== 2) {
   session_start();
   $userId = intval($_SESSION['connected_id']);
 }
+
 ?>
     <head>
         <meta charset="utf-8">
