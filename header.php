@@ -1,4 +1,5 @@
 <?php
+echo (session_status());
   if (session_status()== 2) {
   $userId = intval($_SESSION['connected_id']);
 }
@@ -12,9 +13,9 @@
         <header>
             <img src="resoc1.png" alt="Logo de notre réseau social"/>
             <nav id="menu">
-                <a href="news.php">Actualités🗣️</a>
-                <a href="wall.php?user_id=<?php echo $userId;?>">Mur🧱</a>
-                <a href="feed.php?user_id=<?php echo $userId;?>">Flux🌌</a>
+                <a href="news.php">Breaking News 🗣️</a>
+                <a href="wall.php?user_id=<?php echo $userId;?>">Mur</a>
+                <a href="feed.php?user_id=<?php echo $userId;?>">Flux</a>
                 <a href="tags.php?tag_id=<?php echo $tagId;?>">Mots-clés🗝️</a>
                 <a href="usurpedpost.php?user_id=<?php echo $userId;?>">Catfish🙀</a>
             </nav>

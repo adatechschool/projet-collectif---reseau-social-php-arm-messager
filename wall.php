@@ -17,7 +17,7 @@ session_start();
         exit();
         }
     ?>
-    ?>
+
     </header>
     <div id="wrapper">
         <?php
@@ -39,9 +39,27 @@ session_start();
             $lesInformations = $mysqli->query($laQuestionEnSqlDisplayName);
             $user = $lesInformations->fetch_assoc();
             //@todo: afficher le résultat de la ligne ci dessous, remplacer XXX par l'alias et effacer la ligne ci-dessous
-             echo "<pre>" . print_r($user, 1) . "</pre>";
+             //echo "<pre>" . print_r($user, 1) . "</pre>";
             ?>
-            <img src="avart.png" alt="Portrait de l'utilisatrice" />
+            <?php
+                switch ($userId) {
+                    case 24:
+                        echo " <img src='avart.png' alt='Portrait de l'utilisatrice'/>";
+                        break;
+                    case 25:
+                        echo "<img src='alex.png' alt='Portrait de l'utilisatrice'/>";
+                        break;
+                    case 26:
+                        echo "<img src='julia.png' alt='Portrait de l'utilisatrice'/>";
+                        break;
+                    case 27:
+                        echo "<img src='suzon.png' alt='Portrait de l'utilisatrice'/>";
+                        break;
+                    case 28:
+                        echo "<img src='joe.png' alt='Portrait de l'utilisatrice'/>";
+                        break;
+                    }
+                        ?>
             <section>
                 <h3>Présentation</h3>
                 <p>Sur cette page vous trouverez tous les message de l'utilisatrice :
@@ -69,7 +87,7 @@ session_start();
 
             $enCoursDeTraitementWriting = isset($_POST['message']);
             if ($enCoursDeTraitementWriting) {
-                echo "<pre>" . print_r($_POST, 1) . "</pre>";
+               // echo "<pre>" . print_r($_POST, 1) . "</pre>";
                 $postContent = $_POST['message'];
                 $postContent = $mysqli->real_escape_string($postContent);
 
@@ -109,7 +127,7 @@ session_start();
 
                 <?php
                 while ($posted = $lesInformationsDisplayWall->fetch_assoc()) {
-                    echo "<pre>" . print_r($posted, 1) . "</pre>";
+                    //echo "<pre>" . print_r($posted, 1) . "</pre>";
                 ?>
                     <article>
                         <h3>
@@ -123,14 +141,27 @@ session_start();
                         </div>
                         <footer>
                             <small>🧋<?php echo $posted['like_number'] ?></small>
-                            <?php foreach (explode('.', $posted['taglist']) as $tag) { ?>
-                                <a href=" <?php echo '#' . $tag ?>"> <?php echo '#' . $tag . ' ' ?></a>
-                            <?php } ?>
+                            <?php
+                    if (isset($_SESSION['connected_id']))
+                 {
+                    ?>
+                
+                            <small>
+                              <form action="wall.php?user_id=<?php echo $userId; ?>" method="post">
+                                <input type="hidden" name="liker_id" value="<?php echo $_SESSION['connected_id']?>">
+                                <input type="hidden" name="post_id" value= "<?php echo $post['id'] ?>">
+                            </small>
+                        <?php } ?>
+                            <a href="">
+                            <?php
+                            $array = explode(',', $post['taglist']);
+                            foreach ($array as $valeur) {
+                                echo "<a href='tags.php?tag_id=". $post['tagId']."'>#$valeur, </a>";}
+                            ?></a>
                         </footer>
                     </article>
                 <?php } ?>
-        </main>
-    </div>
-</body>
-
+            </main>
+        </div>
+    </body>
 </html>

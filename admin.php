@@ -13,8 +13,6 @@ session_start();
      <?php
         include 'header.php';
         include 'database_connexion.php';
-        
-       
      ?>
      <div id="wrapper" class='admin'>
          <aside>
@@ -37,7 +35,7 @@ session_start();
                  * Attention à en pas oublier de modifier tag_id=321 avec l'id du mot dans le lien
                  */
                 while ($tag = $lesInformations->fetch_assoc()) {
-                    echo "<pre>" . print_r($tag, 1) . "</pre>"; //print_r permet l'affichage de l'ensemble
+                   // echo "<pre>" . print_r($tag, 1) . "</pre>"; //print_r permet l'affichage de l'ensemble
                 ?>
 
                  <article>
@@ -69,7 +67,7 @@ session_start();
                  * Attention à en pas oublier de modifier dans le lien les "user_id=123" avec l'id de l'utilisatrice
                  */
                 while ($tag = $lesInformations->fetch_assoc()) {
-                    echo "<pre>" . print_r($tag, 1) . "</pre>";
+                    //echo "<pre>" . print_r($tag, 1) . "</pre>";
                 ?>
                  <article>
                      <h3><a href="wall.php?user_id=<?php echo $tag['id'] ?>"><?php echo $tag['alias'] ?></a></h3>

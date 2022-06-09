@@ -14,8 +14,8 @@
     <div id="wrapper">
 
         <aside>
-            <h2>Présentation</h2>
-            <p>Bienvenu sur notre réseau social.</p>
+            <h2>Hello ! 👋🏾</h2>
+            <p>Bienvenu.e sur notre réseau social.</p>
         </aside>
         <main>
             <article>

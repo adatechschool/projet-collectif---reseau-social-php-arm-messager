@@ -21,10 +21,28 @@ session_start()
 
 
             <aside>
-                <img src="user.jpg" alt="Portrait de l'utilisatrice"/>
+            <?php
+                switch ($userId) {
+                    case 24:
+                        echo " <img src='avart.png' alt='Portrait de l'utilisatrice'/>";
+                        break;
+                    case 25:
+                        echo "<img src='alex.png' alt='Portrait de l'utilisatrice'/>";
+                        break;
+                    case 26:
+                        echo "<img src='julia.png' alt='Portrait de l'utilisatrice'/>";
+                        break;
+                    case 27:
+                        echo "<img src='suzon.png' alt='Portrait de l'utilisatrice'/>";
+                        break;
+                    case 28:
+                        echo "<img src='joe.png' alt='Portrait de l'utilisatrice'/>";
+                        break;
+                    }
+                        ?>
                 <section>
-                    <h3>Présentation</h3>
-                    <p>Sur cette page vous trouverez les informations de l'utilisatrice
+                    <h3>Settings</h3>
+                    <p>Voici, toutes les paramètres pour l'utilisateur.rice
                         n° <?php echo intval($_GET['user_id']) ?></p>
 
                 </section>

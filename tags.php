@@ -18,7 +18,7 @@ session_start();
         exit();
         }
     ?>
-    ?>
+    
 
     <div id="wrapper">
         <?php
@@ -44,7 +44,7 @@ session_start();
             //@todo: afficher le résultat de la ligne ci dessous, remplacer XXX par le label et effacer la ligne ci-dessous
             //echo "<pre>" . print_r($tag, 1) . "</pre>";
             ?>
-            <img src="user.jpg" alt="Portrait de l'utilisatrice" />
+            <img src="keys.png" alt="Portrait de l'utilisatrice" />
             <section>
                 <h3>Présentation</h3>
                 <p><?php echo $tag['label'] ?>
@@ -88,28 +88,27 @@ session_start();
             ?>
                 <article>
                     <h3>
-                        <time datetime='2020-02-01 11:12:13'><?php echo $post['created'] ?></time>
-                    </h3>
-                    <address>par <?php echo $post['author_name'] ?></address>
-                    <div>
-                        <p><?php echo $post['content'] ?></p>
-
-                    </div>
-                    <footer>
-                        <small>🧋 <?php echo $post['like_number'] ?> </small>
-                        <?php
-                        $array = explode(',', $post['taglist']);
-                        foreach ($array as $valeur) {
-                            echo "<a href=''>#$valeur, </a>";
-                        }
-                        ?>
-                    </footer>
-                </article>
-            <?php } ?>
-
-
-        </main>
-    </div>
-</body>
-
+                    <time datetime='<?php echo $post['created'] ?>' >
+                            <?php
+                            setlocale(LC_TIME, "fr_FR","French");
+                            echo strftime("%d %B %G à %Hh%M", strtotime($post['created']));?>
+                    </time>
+                        </h3>
+                        <address><a href="wall.php?user_id=<?php echo $post['author_id'] ?>"><?php echo "par ".$post['author_name'] ?></a></address>
+                        <div>
+                            <p><?php echo $post['content'] ?></p>
+                        </div>
+                        <footer>
+                            <small>🧋 <?php echo $post['like_number'] ?></small>
+                            <?php
+                            $array = explode(',', $post['taglist']);
+                            foreach ($array as $valeur) {
+                                echo "<a href=''>#$valeur, </a>";}
+                            ?>
+                        </footer>
+                    </article>
+                <?php } ?>
+            </main>
+        </div>
+    </body>
 </html>

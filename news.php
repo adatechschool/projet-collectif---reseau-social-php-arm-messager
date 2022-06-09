@@ -5,7 +5,7 @@ session_start();
 <html lang="fr">
     <head>
         
-        <title>ReSoC - Actualités</title> 
+        <title>ReSoC - Breaking News </title> 
        
     </head>
     <body>
@@ -16,11 +16,12 @@ session_start();
 
         <div id="wrapper">
             <aside>
-                <img src="avart.png" alt="Portrait de l'utilisatrice"/>
+                <img src="news.png" alt="Portrait de l'utilisatrice"/>
                 <section>
-                    <h3>Présentation</h3>
-                    <p>Sur cette page vous trouverez les derniers messages de
-                        tous les utilisatrices du site.</p>
+                    <h3></h3>
+                    <p>
+                        Tu peux suivre ici, l'ensemble de l'actualité Bubble News 💕
+                    </p>
                 </section>
             </aside>
             <main>
@@ -98,6 +99,7 @@ session_start();
                             $array = explode(',', $post['taglist']);
                             foreach ($array as $valeur) {
                                 echo "<a href=''>#$valeur, </a>";}
+                    
                             ?>
     
                         </footer>

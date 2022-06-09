@@ -37,15 +37,33 @@ session_start();
                 $lesInformations = $mysqli->query($laQuestionEnSql);
                 $user = $lesInformations->fetch_assoc();
                 //@todo: afficher le résultat de la ligne ci dessous, remplacer XXX par l'alias et effacer la ligne ci-dessous
-                echo "<pre>" . print_r($user, 1) . "</pre>";
+                //echo "<pre>" . print_r($user, 1) . "</pre>";
                 ?>
-                <img src="avart.png" alt="Portrait de l'utilisatrice"/>
-                <section>
-                    <h3>Présentation</h3>
-                    <p>Sur cette page vous trouverez tous les message des utilisatrices
-                        auxquel est abonnée l'utilisatrice <a href="wall.php?user_id=<?php echo $userId ?>"><?php echo $user['alias']?></a>
-                        (n° <?php echo $userId ?>)
-                    </p>
+                   <?php
+                switch ($userId) {
+                    case 24:
+                        echo " <img src='avart.png' alt='Portrait de l'utilisatrice'/>";
+                        break;
+                    case 25:
+                        echo "<img src='alex.png' alt='Portrait de l'utilisatrice'/>";
+                        break;
+                    case 26:
+                        echo "<img src='julia.png' alt='Portrait de l'utilisatrice'/>";
+                        break;
+                    case 27:
+                        echo "<img src='suzon.png' alt='Portrait de l'utilisatrice'/>";
+                        break;
+                    case 28:
+                        echo "<img src='joe.png' alt='Portrait de l'utilisatrice'/>";
+                        break;
+                    }
+                        ?>
+                    
+                        <h3>Présentation</h3>
+                        <p>Sur cette page vous trouverez tous les message des utilisatrices
+                            auxquel est abonnée l'utilisatrice <a href="wall.php?user_id=<?php echo $userId ?>"><?php echo $user['alias']?></a>
+                            (n° <?php echo $userId ?>)
+                            </p>
 
                 </section>
             </aside>
@@ -95,6 +113,7 @@ session_start();
                          
                     <footer>
                         <small>🧋<?php echo $post['like_number'] ?></small>
+                    
                         <?php
                             $array = explode(',', $post['taglist']);
                             foreach ($array as $valeur) {

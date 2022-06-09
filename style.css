@@ -1,33 +1,42 @@
+@font-face {
+    font-family: Joan-Regular;
+    src: url(fonts/Joan-Regular.ttf);
+}
 body{
-    background-color: rgb(128, 128, 245);
-    font-family: Arial;
+    background: no-repeat url(hour.png);
+    color:rgb(59, 54, 48);
+    background-size:cover;
+    font-family:url ;
 }
 
-a{text-decoration: none; color:black;}
+a{text-decoration: none; color:rgb(59, 54, 48);
+font-size: medium;}
 a:hover{text-decoration: underline;}
 
 body>header{
-    background-color: #fff;
+    background-color: rgb(255, 255, 255);
     display:flex;
     width:80em;
     margin:0 auto 2em auto;    
     padding:0;
-
+    border-radius: 1em ;
 }
+
 body>header img{
-    height:5em;
+    height: 5em;
 }
 body>header #menu {
     display:flex;
-    width:50%;
-    align-items: stretch;
-    border-left: 1px solid #99b;
+    width: 70%;
+    align-items: normal;
+    border-left: 1px solid rgba(236, 108, 232, 0.502);
 }
 body>header #menu a{
     flex:1;
     text-align: center;
     padding-top:2em;
-    border-right: 1px solid #99b;
+    border-right: 1px solid rgba(236, 108, 232, 0.502);
+    font-size:1.20em;
 }
 body>header a:hover
 {
@@ -53,7 +62,7 @@ body>header #user ul{
     margin:0;
     margin-left:-5em;
     background-color: #fff;
-    border: 1px solid #99b;
+    border: 1px solid rgb(104, 104, 242)b;
 
     z-index: 1;
 }
@@ -61,7 +70,7 @@ body>header #user ul li a{
     display:block;
     width:10em;
     padding:1em;
-    border-bottom: 1px solid #99b;
+    border-bottom: 1px solid rgb(104, 104, 242);
 }
 body>header #user:hover ul{
     display:block;
@@ -77,14 +86,24 @@ body>header #user:hover ul{
     background-color: #fff;
     flex:1;
     padding:1em;
-    border-radius: 1em;    
+    border-radius: 1em;
+     
 }
 #wrapper aside img{
     display: block;
     width:50%;
     margin:auto;
 }
+#wrapper aside h3 {
+    color:#d52aa5;
+    text-align:center;
+}
 
+#wrapper aside p {
+    text-align:center;
+    font-size: 20px;
+    font-style: italic;
+}
 #wrapper main{
     flex:3;
     padding-left:1em;
@@ -98,10 +117,11 @@ body>header #user:hover ul{
     border-radius: 1em;
 }
 #wrapper main article h3{
-    margin:0;
+    margin: 0px;;
     padding:0;
     font-weight: normal;
     font-size:1em;
+    text-align:center;
 
 }
 #wrapper main article time{
@@ -113,6 +133,10 @@ body>header #user:hover ul{
 }
 #wrapper main article p{
     margin:0;
+    padding:0;
+    font-weight: normal;
+    font-size:1em;
+
 }
 #wrapper main article footer{
     margin-top: 1em;
@@ -126,10 +150,10 @@ body>header #user:hover ul{
 #wrapper.admin aside{flex:1;margin-left:1em;border-radius:0;padding:0;}
 #wrapper.admin main{flex:2;background-color: #fff;border-radius: 0;padding:0;}
 #wrapper.admin h2{text-align: center;}
-#wrapper.admin h3{margin:0;}
+#wrapper.admin h3{margin:0;text-align:center;}
 #wrapper.admin nav{text-align: right;}
 #wrapper.admin article{border:1px solid #ddd;border-radius: 1em;padding:1em;margin:1em;}
-#wrapper.admin article p{float:left;margin:0;}
+#wrapper.admin article p{float:left;margin: 0px;}
 
 
 .parameters dl dt{float:left;font-weight: bold;line-height: 1.5em;}
@@ -154,7 +178,18 @@ body>header #user:hover ul{
 pre{
     color:#aaa;
 }
-
+input[type=submit] {
+    background-color:#f1a84f;
+    border: none;
+    color: rgb(252, 252, 251);
+    padding: 10px 23px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 12px;
+  }
+  #usurpedpost {overflow-y: hidden;}
+  
 form dl dt{float:left;font-weight: bold;line-height: 1.5em;}
 form dl dd{margin-left:10em;line-height: 1.5em;margin-bottom: 1em}
 form dl dd textarea{width:40em;height: 15em;}

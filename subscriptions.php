@@ -15,14 +15,28 @@ if (!isset($_SESSION['connected_id'])) {
     <?php
     include 'header.php';
     include 'database_connexion.php';
-    if (!$_SESSION['connected_id']) {
-        header("Location: login.php");
-        die();
-    }
     ?>
     <div id="wrapper">
         <aside>
-            <img src="user.jpg" alt="Portrait de l'utilisatrice" />
+        <?php
+                switch ($userId) {
+                    case 24:
+                        echo " <img src='avart.png' alt='Portrait de l'utilisatrice'/>";
+                        break;
+                    case 25:
+                        echo "<img src='alex.png' alt='Portrait de l'utilisatrice'/>";
+                        break;
+                    case 26:
+                        echo "<img src='julia.png' alt='Portrait de l'utilisatrice'/>";
+                        break;
+                    case 27:
+                        echo "<img src='suzon.png' alt='Portrait de l'utilisatrice'/>";
+                        break;
+                    case 28:
+                        echo "<img src='joe.png' alt='Portrait de l'utilisatrice'/>";
+                        break;
+                    }
+                        ?>
             <section>
                 <h3>Présentation</h3>
                 <p>Sur cette page vous trouverez la liste des personnes dont
@@ -50,7 +64,25 @@ if (!isset($_SESSION['connected_id'])) {
             ?>
             <?php while ($subscribers = $lesInformations->fetch_assoc()) { ?>
                 <article>
-                    <img src="user.jpg" alt="blason" />
+                <?php
+                switch ($subscribers['user_id']) {
+                    case 24:
+                        echo " <img src='avart.png' alt='Portrait de l'utilisatrice'/>";
+                        break;
+                    case 25:
+                        echo "<img src='alex.png' alt='Portrait de l'utilisatrice'/>";
+                        break;
+                    case 26:
+                        echo "<img src='julia.png' alt='Portrait de l'utilisatrice'/>";
+                        break;
+                    case 27:
+                        echo "<img src='suzon.png' alt='Portrait de l'utilisatrice'/>";
+                        break;
+                    case 28:
+                        echo "<img src='joe.png' alt='Portrait de l'utilisatrice'/>";
+                        break;
+                    }
+                        ?>
                     <h3><?php echo $subscribers['alias'] ?></h3>
                     <p>id: <?php echo $subscribers['user_id'] ?></p>
                 </article>
