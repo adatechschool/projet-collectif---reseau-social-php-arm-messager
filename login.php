@@ -12,7 +12,6 @@
         </header>
 
         <div id="wrapper" >
-
             <aside>
                 <h2>Présentation</h2>
                 <p>Bienvenu.e sur notre Bubble Chat.</p>
