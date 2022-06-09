@@ -16,6 +16,7 @@ if (!isset($_SESSION['connected_id'])) {
     include 'header.php';
     include 'database_connexion.php';
     ?>
+    
     <div id="wrapper">
         <aside>
         <?php

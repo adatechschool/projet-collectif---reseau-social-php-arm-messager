@@ -17,7 +17,6 @@ session_start();
         exit();
         }
     ?>
-
     </header>
     <div id="wrapper">
         <?php
