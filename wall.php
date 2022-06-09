@@ -12,6 +12,10 @@ session_start();
     <?php
     include 'header.php';
     include 'database_connexion.php';
+    if (!isset($_SESSION['connected_id'])) {
+        header("Location: login.php");
+        exit();
+        }
     ?>
     </header>
     <div id="wrapper">
